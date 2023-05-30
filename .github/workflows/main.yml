@@ -1,12 +1,14 @@
-name: Actions Runner Controller Demo
+name: build
 on:
   workflow_dispatch:
 
 jobs:
-  Explore-GitHub-Actions:
+  build:
     # You need to use the INSTALLATION_NAME from the previous step
     runs-on: arc-runner-set
     steps:
-    - run: docker pull nginx
-    - run: docker tag nginx registry.home.dynamis.bbrfkr.net/arc-push-test
-    - run: docker push registry.home.dynamis.bbrfkr.net/arc-push-test
+    - uses: actions/checkout@v3
+    - run: docker build -t registry.home.dynamis.bbrfkr.net/rails-tutorial .
+    - run: docker tag registry.home.dynamis.bbrfkr.net/rails-tutorial registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}
+    - run: docker push registry.home.dynamis.bbrfkr.net/rails-tutorial
+    - run: docker push registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}
