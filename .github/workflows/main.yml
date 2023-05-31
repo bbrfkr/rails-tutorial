@@ -40,7 +40,7 @@ jobs:
     - run: >
         git diff --exit-code ||
         git config user.name github-actions[bot] &&
-        git config user.email github-actions[bot]@users.noreply.github.com &&
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com &&
         git checkout -b from-rails-tutorial-${{ github.sha }} &&
         git add . &&
         git commit --author=. -m "Update image tag to ${{ github.sha }}" &&
