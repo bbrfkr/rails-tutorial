@@ -40,4 +40,3 @@ jobs:
         git checkout -b from-rails-tutorial-${{ github.sha }} &&
         git push origin from-rails-tutorial-${{ github.sha }} &&
         gh pr create --base master --head from-rails-tutorial-${{ github.sha }} --title "from rails-tutorial: sha=${{ github.sha }}" --body ""
-    - run:       
