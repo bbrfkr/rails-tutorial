@@ -30,7 +30,7 @@ jobs:
         cat manifests/params.libsonnet |
         jsonnet - |
         jq '.image|="registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}"' |
-        jsonnetfmt - > manifests/params.jsonnet
+        jsonnetfmt - > manifests/params.libsonnet
       working-directory: rails-tutorial-manifests
     - id: generate_token
       uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92
