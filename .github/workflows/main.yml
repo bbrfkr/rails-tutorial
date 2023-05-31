@@ -32,7 +32,7 @@ jobs:
         cat manifests/rails-tutorial.jsonnet |
         jsonnet params.libsonnet |
         jq '.image|="registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}"' |
-        jsonnet > manifests/rails-tutorial.jsonnet
+        jsonnet - > manifests/rails-tutorial.jsonnet
     - run: >
         git diff --exit-code ||
         git config user.name github-actions[bot] &&
