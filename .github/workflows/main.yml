@@ -43,6 +43,7 @@ jobs:
         if [ -z "$GIT_DIFF" ]; then
           echo "nothing to do."
         else
+          git config --unset-all http.https://github.com/.extraheader
           git remote add from-actions https://github-actions:${GITHUB_TOKEN}@github.com/bbrfkr/rails-tutorial-manifests
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
