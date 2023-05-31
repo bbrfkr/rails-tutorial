@@ -43,13 +43,13 @@ jobs:
         if [ -z "$GIT_DIFF" ]; then
           echo "nothing to do."
         else
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/bbrfkr/rails-tutorial-manifests
+          git remote add from-actions https://github-actions:${GITHUB_TOKEN}@github.com/bbrfkr/rails-tutorial-manifests
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git checkout -b from-rails-tutorial-${{ github.sha }} &&
           git add .
           git commit -m "Update image tag to ${{ github.sha }}" &&
-          git push origin from-rails-tutorial-${{ github.sha }} &&
+          git push from-actions from-rails-tutorial-${{ github.sha }} &&
           gh pr create --base master --head from-rails-tutorial-${{ github.sha }} --title "from rails-tutorial: sha=${{ github.sha }}" --body ""
         fi
       working-directory: rails-tutorial-manifests
