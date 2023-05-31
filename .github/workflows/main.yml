@@ -38,8 +38,8 @@ jobs:
         app_id: ${{ secrets.APP_ID }}
         private_key: ${{ secrets.APP_PRIVATE_KEY }}
     - run: |
-        git diff --name-only --exit-code
-        if [ $? -eq 0 ]; then
+        GIT_DIFF=$(git diff --name-only)
+        if [ -z "$GIT_DIFF" ]; then
           echo "nothing to do."
         else
           git config user.name github-actions[bot]
