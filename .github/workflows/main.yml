@@ -28,11 +28,10 @@ jobs:
         sudo apt update && sudo apt install gh -y
     - run: >
         cd rails-tutorial-manifests &&
-        ls -lR &&
-        cat manifests/rails-tutorial.jsonnet |
-        jsonnet params.libsonnet |
+        cat manifests/params.libsonnet |
+        jsonnet - |
         jq '.image|="registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}"' |
-        jsonnet - > manifests/rails-tutorial.jsonnet
+        jsonnetfmt - > manifests/params.jsonnet
     - run: >
         git diff --exit-code ||
         git config user.name github-actions[bot] &&
