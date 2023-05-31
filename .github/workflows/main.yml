@@ -43,7 +43,7 @@ jobs:
         git config user.email 41898282+github-actions[bot]@users.noreply.github.com &&
         git checkout -b from-rails-tutorial-${{ github.sha }} &&
         git add . &&
-        git commit --author=. -m "Update image tag to ${{ github.sha }}" &&
+        git commit -m "Update image tag to ${{ github.sha }}" &&
         git push origin from-rails-tutorial-${{ github.sha }} &&
         gh pr create --base master --head from-rails-tutorial-${{ github.sha }} --title "from rails-tutorial: sha=${{ github.sha }}" --body ""
       working-directory: rails-tutorial-manifests
