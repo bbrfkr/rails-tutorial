@@ -27,11 +27,11 @@ jobs:
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
         sudo apt update && sudo apt install gh -y
     - run: >
-        cd rails-tutorial-manifests &&
         cat manifests/params.libsonnet |
         jsonnet - |
         jq '.image|="registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}"' |
         jsonnetfmt - > manifests/params.jsonnet
+      working-directory: rails-tutorial-manifests
     - run: >
         git diff --exit-code ||
         git config user.name github-actions[bot] &&
@@ -40,3 +40,4 @@ jobs:
         git checkout -b from-rails-tutorial-${{ github.sha }} &&
         git push origin from-rails-tutorial-${{ github.sha }} &&
         gh pr create --base master --head from-rails-tutorial-${{ github.sha }} --title "from rails-tutorial: sha=${{ github.sha }}" --body ""
+      working-directory: rails-tutorial-manifests
