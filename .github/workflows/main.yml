@@ -37,11 +37,13 @@ jobs:
       with:
         app_id: ${{ secrets.APP_ID }}
         private_key: ${{ secrets.APP_PRIVATE_KEY }}
+        repository: bbrfkr/rails-tutorial-manifests
     - run: |
         GIT_DIFF=$(git diff --name-only)
         if [ -z "$GIT_DIFF" ]; then
           echo "nothing to do."
         else
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/bbrfkr/rails-tutorial-manifests
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git checkout -b from-rails-tutorial-${{ github.sha }} &&
