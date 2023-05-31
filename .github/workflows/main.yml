@@ -39,8 +39,8 @@ jobs:
         private_key: ${{ secrets.APP_PRIVATE_KEY }}
     - run: >
         git diff --exit-code ||
-        git config --global user.name github-actions[bot] &&
-        git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com &&
+        git config user.name "github-actions[bot]" &&
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com" &&
         git checkout -b from-rails-tutorial-${{ github.sha }} &&
         git add . &&
         git commit -m "Update image tag to ${{ github.sha }}" &&
