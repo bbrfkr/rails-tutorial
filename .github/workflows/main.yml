@@ -13,6 +13,7 @@ jobs:
     - run: docker push registry.home.dynamis.bbrfkr.net/rails-tutorial:${{ github.sha }}
   change_image_tag:
     runs-on: ubuntu
+    needs: build
     steps:
     - uses: actions/checkout@v3
       with:
