@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+    - 8080:8080
+    environment:
+      MONGODB_URL: mongodb://db:27017/monstache-test?tls=false
+  db:
+    image: mongo
+    ports:
+    - 27017:27017
