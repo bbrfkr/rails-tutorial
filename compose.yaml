@@ -5,7 +5,7 @@ services:
     ports:
     - 8080:8080
     environment:
-      MONGODB_URL: mongodb://db:27017/monstache-test?tls=false
+      MONGODB_URI: mongodb://db:27017/monstache-test?tls=false
   db:
     image: mongo
     ports:

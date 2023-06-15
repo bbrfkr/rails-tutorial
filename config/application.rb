@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+require "mongoid"
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -11,6 +13,16 @@ module HelloApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.generators do |g|
+      g.orm :mongoid
+    end
+
+    Mongoid.configure do |config|
+      config.clients.default = {
+        uri: ENV['MONGODB_URI']
+      }
+      config.log_level = :warn
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
