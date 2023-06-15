@@ -2,9 +2,10 @@ require 'mongo'
 require 'securerandom'
 
 class ApplicationController < ActionController::Base
+    @@dbClient = Mongo::Client.new(ENV['MONGODB_URL'])
+
     def insert
-        dbClient = Mongo::Client.new(ENV['MONGODB_URL'])
-        collection = dbClient[:test]
+        collection = @@dbClient[:test]
         record_uuid = SecureRandom.uuid
         document = {
             record_uuid: record_uuid
